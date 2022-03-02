@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TableBody from './tableBody';
 import Like from './like';
 import TableHeader from './tableHeader';
+import Table from './table';
 
 class MoviesTable extends Component {
 
@@ -23,27 +24,30 @@ class MoviesTable extends Component {
     ]
 
     render() {
-        const { movies, onLike, onDelete, onSort, sortColumn } = this.props;
+        const { movies, onSort, sortColumn, onLike } = this.props;
         return (
-            <table className="m-5 table">
-                <TableHeader
-                    colums={this.colums}
-                    onSort={onSort}
-                    sortColumn={sortColumn}
-                />
-
-                <TableBody
-                    data={movies}
-                    colums={this.colums}
-                    onLike={onLike}
-                    onDelete={onDelete}
-                />
-
-
-            </table>
-
+          
+            <Table onLike={onLike} colums={this.colums} data={movies}  onSort={onSort} sortColumn={sortColumn}/>
         );
     }
 }
 
 export default MoviesTable;
+
+
+//   <table className="m-5 table">
+//                 <TableHeader
+//                     colums={this.colums}
+//                     onSort={onSort}
+//                     sortColumn={sortColumn}
+//                 />
+
+//                 <TableBody
+//                     data={movies}
+//                     colums={this.colums}
+//                     onLike={onLike}
+//                     onDelete={onDelete}
+//                 />
+
+
+//             </table>

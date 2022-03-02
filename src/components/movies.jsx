@@ -30,6 +30,7 @@ class Movies extends Component {
     }
 
     handleLike = (movie) => {
+        console.log(movie);
         const movies = [...this.state.movies];
         const index = movies.indexOf(movie);
         movies[index] = { ...movies[index] };
@@ -49,6 +50,16 @@ class Movies extends Component {
         this.setState({ sortColumn })
     }
 
+    // getPageData = () => {
+    //     const filtered = selectedGenre && selectedGenre._id ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies;
+
+    //     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order])
+
+    //     const movies = paginate(sorted, currentPage, pageSize);
+
+    //     return { totalCount: filtered.length, data: movies };
+    // }
+
     render() {
         const { movies: allMovies, currentPage, pageSize, genres, selectedGenre, sortColumn } = this.state;
 
@@ -62,6 +73,8 @@ class Movies extends Component {
         const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order])
 
         const movies = paginate(sorted, currentPage, pageSize);
+         
+
         return (
             <div className="container">
                 <div className="row">
