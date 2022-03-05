@@ -20,7 +20,7 @@ function App() {
         <Route path="/rentals" component={Rentals} />
         <Route path="/not-found" component={NotFound} />
         <Redirect from="/" exect to="/movies" />
-        <Redirect path="not-found"/>
+        <Redirect to="/not-found"/>
       </Switch>
     </div>
   );
