@@ -1,8 +1,9 @@
 import Joi  from 'joi-browser';
 import React, { Component } from 'react'
+import Form from './form';
 import Input from './input';
 
-class LoginForm extends Component {
+class LoginForm extends Form {
     // username = React.createRef();
     state = {
         account: { username: '', password: '' },
@@ -18,19 +19,19 @@ class LoginForm extends Component {
         password: Joi.string().required()
     }
 
-    validate = () => {
+    // validate = () => {
 
-        const {error} = Joi.validate(this.state.account, this.schema, { abortEarly : false});
+    //     const {error} = Joi.validate(this.state.account, this.schema, { abortEarly : false});
 
-        const errors = {}
+    //     const errors = {}
 
-        if (!error) return null;
+    //     if (!error) return null;
 
-        for (let item of error.details) {
-            errors[item.path[0]] = item.message;
-        }
+    //     for (let item of error.details) {
+    //         errors[item.path[0]] = item.message;
+    //     }
 
-        return errors;
+    //     return errors;
 
         // const { account } = this.state;
         // if (account.username.trim() === '')
@@ -40,45 +41,38 @@ class LoginForm extends Component {
         //     errors.password = "Password is required"
         
         // return Object.keys(errors).length === 0 ? null : errors;
+   // }
+
+
+    doSubmit = () => {
+         console.log("submitted")
     }
 
-    handleSubmit = e => {
-        e.preventDefault()
-        // const username = this.username.current.value;
+    // validateProperty = ({ name, value }) => {
+    //     // if (name === 'username') {
+    //     //     if (value.trim() === '') return 'Username is required';
+    //     // }
 
-        const errors = this.validate();
-        this.setState({ errors: errors || {} });
+    //     // if (name === 'password') {
+    //     //     if (value.trim() === '') return 'Password is required';
+    //     // }
 
-        if (errors) return;
+    //     const obj = { [name]: value };
+    //     const schema = { [name]: this.schema[name] };
+    //     const { error } = Joi.validate(obj, schema);
+    //     return error ? error.details.message : null;
+    // }
 
-        console.log("submitted")
-    }
+    // handleChange = ({ currentTarget: input }) => {
+    //     const errors = { ...this.state.errors };
+    //     const errorMessage = this.validateProperty(input);
+    //     if (errorMessage) errors[input.value] = errorMessage;
+    //     else delete errors[input.name];
 
-    validateProperty = ({ name, value }) => {
-        // if (name === 'username') {
-        //     if (value.trim() === '') return 'Username is required';
-        // }
-
-        // if (name === 'password') {
-        //     if (value.trim() === '') return 'Password is required';
-        // }
-
-        const obj = { [name]: value };
-        const schema = { [name]: this.schema[name] };
-        const { error } = Joi.validate(obj, schema);
-        return error ? error.details.message : null;
-    }
-
-    handleChange = ({ currentTarget: input }) => {
-        const errors = { ...this.state.errors };
-        const errorMessage = this.validateProperty(input);
-        if (errorMessage) errors[input.value] = errorMessage;
-        else delete errors[input.name];
-
-        const account = { ...this.state.account };
-        account[input.name] = input.value;
-        this.setState({ account, errors });
-    }
+    //     const account = { ...this.state.account };
+    //     account[input.name] = input.value;
+    //     this.setState({ account, errors });
+    // }
 
     render() { 
         return (
